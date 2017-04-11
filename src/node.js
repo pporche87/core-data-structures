@@ -1,20 +1,23 @@
 'use strict'
 
 export default class Node {
-  costructor(data){
+  constructor(data){
     this.data = data
-    this.next = undefined
+    this.next = undefined 
   }
 
   getData() {
-    console.log('test this', this)
-    console.log('testing', this.data)
-    return this.data.data
+    return this.data
   }
-  // setNext(nodeB){
-  //
-  // }
-  // getNext(){
-  //
-  // }
+  setNext(nodeB){
+     this.next = nodeB
+     return this
+  }
+  getNext(nextNode){
+      if (nextNode === undefined) {
+        return null
+      } else {
+        return this.next
+      }
+  }
 }
