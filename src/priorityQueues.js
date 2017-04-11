@@ -1,13 +1,20 @@
 'use strict'
 
-export default class Queues {
+class PriorityNode {
+  constructor(data, priority) {
+    this.data = data
+    this.priority = priority
+  }
+}
+
+class PriorityQueues {
   constructor() {
     this.dataStore = []
     this.counter = 0
   }
 
-  enqueue(element){
-    this.dataStore.push(element)
+  enqueue(data, priority){
+    this.dataStore.push(data, priority)
     this.counter++
   }
 
@@ -48,3 +55,5 @@ export default class Queues {
     return this.counter
   }
 }
+
+export { PriorityNode, PriorityQueues }
