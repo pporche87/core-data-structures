@@ -1,5 +1,3 @@
-'use strict'
-
 class Node {
   constructor(element) {
     this.element = element
@@ -65,36 +63,63 @@ class LinkedList {
 
   insertFirst(fruit) {
     let newNode = new Node(fruit)
+    newNode.next = this.head
     this.head = newNode
   }
 
-  insertBefore() {
-
+  insertBefore(newFruit, fruit) {
+    let insertNode = new Node(newFruit)
+    let currentNode = this.head
+    if(this.size === 1){
+      insertNode.next = this.head
+      this.head = insertNode
+    }
+    while(currentNode){
+      if(currentNode.next.element === fruit){
+        insertNode.next = currentNode.next
+        currentNode.next = insertNode
+        return
+      } else {
+        currentNode = currentNode.next
+      }
+      if(currentNode === this.tail){
+        return `${index} does not exist`
+      }
+    }
   }
 
   insertAfter(fruit, newFruit) {
-    // let newNode = new Node(newElement)
-    // let current = this.find(item)
-    // newNode.next = current.next
-    // current.next = newNode
-
-    // if(currentNode.element === fruit){
-    //   this.next = newNode
-    // }
-
-    let newNode = new Node(newFruit), currentNode = this.head
-    while(currentNode.element !== fruit){
-      if(currentNode.element === fruit){
-        newNode.next = currentNode.next
-        currentNode.next = newNode
-      }
-      currentNode = currentNode.next
+    let insertNode = new Node(newFruit)
+    let currentNode = this.head
+    if(this._length === 1) {
+      currentNode.next = insertNode
     }
-
+    while(currentNode) {
+      if(currentNode.element === fruit) {
+        insertNode.next = currentNode.next
+        currentNode.next = insertNode
+        return
+      } else {
+        currentNode = currentNode.next
+      }
+      if(currentNode.next === this.tail){
+        return `${fruit} does not exist`
+      }
+    }
+    this._length++
   }
 
   remove() {
-
+    let currentNode = this.head
+    while(currentNode.next){
+      if(currentNode.next === this.tail){
+        currentNode.next = null
+        this._length--
+        return this._length
+      }
+      currentNode = currentNode.next
+    }
+    return this._length
   }
 
   removeFirst() {
@@ -105,10 +130,15 @@ class LinkedList {
   }
 
   isEmpty() {
-    return this._length === 0
+    if(this._length === 0){
+      return true
+  } else {
+      return false
+    }
   }
 
   size() {
+    log(this._length)
     return this._length
   }
 

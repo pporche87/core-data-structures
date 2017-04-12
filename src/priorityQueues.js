@@ -1,6 +1,4 @@
-'use strict'
-
-class PriorityNode {
+ class PriorityNode {
   constructor(data, priority) {
     this.data = data
     this.priority = priority

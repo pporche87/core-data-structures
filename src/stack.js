@@ -1,6 +1,4 @@
-'use strict'
-
-export default class Stack {
+ export default class Stack {
   constructor() {
     this.dataStore = []
     this.top = 0

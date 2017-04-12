@@ -1,6 +1,4 @@
-'use strict'
-
-export default class Queues {
+ export default class Queues {
   constructor() {
     this.dataStore = []
     this.counter = 0

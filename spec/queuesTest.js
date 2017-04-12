@@ -5,7 +5,7 @@ import Queues from '../src/queues'
 chai.use(chaiChange)
 
 describe('Queues', () => {
-  'use strict'
+
 
   it('exists', () => {
     expect(Queues).to.be.a('function')
