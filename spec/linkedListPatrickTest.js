@@ -112,16 +112,17 @@ describe.only('LinkedList', () => {
     })
   })
 
-  context('myContains()', () => {
-    it('Determines whether the list contains the provided data.', () => {
+  context('mySize()', () => {
+    it('returns size of the list (number of nodes)', () => {
 
-      expect(myLinkedList.myContains('banana') ).to.equal(true)
-    })
-
-    it('Determines whether the list does not contain the provided data.', () => {
-
-      expect(myLinkedList.myContains('cat') ).to.equal(false)
+      expect(myLinkedList.mySize() ).to.equal(4)
     })
   })
 
+  context('clear()', () => {
+    it('clears the list of all nodes / data.', () => {
+
+      expect(myLinkedList.clear() ).to.equal(0)
+    })
+  })
 })

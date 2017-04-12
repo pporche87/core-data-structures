@@ -137,13 +137,16 @@ class LinkedList {
     }
   }
 
-  size() {
-    log(this._length)
+  mySize() {
     return this._length
   }
 
   clear() {
+      this._length = 0
+      this.head = null
+      this.tail = null
 
+      return this._length
   }
 }
 
