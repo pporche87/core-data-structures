@@ -1,4 +1,4 @@
- class PriorityNode {
+class PriorityNode {
   constructor(data, priority) {
     this.data = data
     this.priority = priority
@@ -22,7 +22,7 @@ class PriorityQueues {
     } else {
       return this.dataStore.shift()
       this.counter--
-    }
+      }
   }
 
   front(){
@@ -30,7 +30,7 @@ class PriorityQueues {
       return null
     } else {
       return this.dataStore[0]
-    }
+      }
   }
 
   back(){
@@ -38,7 +38,7 @@ class PriorityQueues {
       return null
     } else {
       return this.dataStore[this.dataStore.length - 1]
-    }
+      }
   }
 
   isEmpty(){
@@ -46,12 +46,13 @@ class PriorityQueues {
       return true
     } else {
       return false
-    }
+      }
   }
 
   myLength(){
     return this.counter
   }
+
 }
 
 export { PriorityNode, PriorityQueues }
