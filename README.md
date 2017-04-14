@@ -78,7 +78,7 @@ context('union', () => {
     })
 })
 ```
-# Core Data Structures  ## 80% Complete (Basic)
+# Core Data Structures - 80% Complete (Basic)
 
 [Basic](#basic-data-structures) | [Advanced](#advanced-data-structures)
 
