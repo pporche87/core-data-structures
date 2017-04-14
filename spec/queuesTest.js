@@ -5,56 +5,92 @@ import Queues from '../src/queues'
 chai.use(chaiChange)
 
 describe('Queues', () => {
-      it('exists', () => {
-        expect(Queues).to.be.a('function')
-      })
+  'use strict'
 
-      context('enqueue()', () => {
-        it('adds an element (the string "foo") to the back of the queue.', () => {
-          const myQueue = new Queues()
+  it('exists', () => {
+    expect(Queues).to.be.a('function')
+  })
 
-          expect( () => myQueue.enqueue('foo')).to.alter(() => myQueue.counter, { from: 0, to: 1 })
-        })
-      })
 
-      context('dequeue()', () => {
-        it('returns and removes the front element in the queue or null if the queue is empty.', () => {
-          const myQueue = new Queues()
+  context('enqueue()', () => {
+    it('adds an element with priority (number) to the back of the queue.', () => {
+      const myQueue = new Queues()
 
-          expect(myQueue.dequeue() ).to.equal(null)
-        })
-      })
+      expect( () => myQueue.enqueue('tesla')).to.alter( () => myQueue._newestIndex, { by: 1 })
+    })
+  })
 
-      context('front()', () => {
-        it('returns the front element in queue or null if the queue if the queue is empty.', () => {
-          const myQueue = new Queues()
+  context('dequeue()', () => {
+    it('returns and removes the front element in the queue.', () => {
+      const myQueue = new Queues()
+      myQueue.enqueue('bmw')
 
-          expect(myQueue.front() ).to.equal(null)
-        })
-      })
+      expect(myQueue.dequeue() ).to.equal('bmw')
+    })
 
-      context('back()', () => {
-        it('return the back element in the queue or null if the queue is empty.', () => {
-          const myQueue = new Queues()
+    it('returns null if the queue is empty.', () => {
+      const myQueue = new Queues()
 
-          expect(myQueue.back() ).to.equal(null)
-        })
-      })
+      expect(myQueue.dequeue() ).to.equal(null)
+    })
+  })
 
-      context('isEmpty()', () => {
-        it('returns true if the queue is empty or false if not.', () => {
-          const myQueue = new Queues()
+  context('front()', () => {
+    it('returns the front element in queue.', () => {
+      const myQueue = new Queues()
 
-          expect(myQueue.isEmpty() ).to.equal(true || false)
-        })
-      })
+      expect(myQueue.front() ).to.equal(null)
+    })
 
-      context('myLength()', () => {
-        it('returns the number of elements in the queue.', () => {
-          const myQueue = new Queues()
+    it('returns null if the queue if the queue is empty.', () => {
+      const myQueue = new Queues()
+      myQueue.enqueue('mercedes')
+      myQueue.enqueue('porsche')
 
-          expect(myQueue.myLength() ).to.equal(0)
-        })
-      })
-      
+      expect(myQueue.front() ).to.equal('mercedes')
+    })
+  })
+
+  context('myBack()', () => {
+    it('return the back element in the queue.', () => {
+      const myQueue = new Queues()
+      myQueue.enqueue('audi')
+      myQueue.enqueue('ferrari')
+
+      expect(myQueue.myBack() ).to.equal('ferrari')
+    })
+
+    it('return null if the queue is empty.', () => {
+      const myQueue = new Queues()
+
+      expect(myQueue.myBack() ).to.equal(null)
+    })
+  })
+
+  context('isEmpty()', () => {
+    it('returns true if the queue is empty.', () => {
+      const myQueue = new Queues()
+
+      expect(myQueue.isEmpty() ).to.equal(true)
+    })
+
+    it('returns false if the queue not empty.', () => {
+      const myQueue = new Queues()
+      myQueue.enqueue('maserati')
+
+      expect(myQueue.isEmpty() ).to.equal(false)
+    })
+  })
+
+  context('myLength()', () => {
+    it('returns the number of elements in the queue.', () => {
+      const myQueue = new Queues()
+      myQueue.enqueue('landrover')
+      myQueue.enqueue('lexus')
+      myQueue.enqueue('acura')
+      myQueue.dequeue()
+
+      expect(myQueue.myLength() ).to.equal(2)
+    })
+  })
 })

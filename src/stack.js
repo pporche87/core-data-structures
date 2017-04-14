@@ -1,6 +1,6 @@
 export default class Stack {
   constructor() {
-    this.dataStore = []
+    this.dataStore = {}
     this.top = 0
   }
 
@@ -12,8 +12,9 @@ export default class Stack {
     if(this.top === 0){
       return null
     } else {
-      return this.dataStore[this.top--]
-      }
+      this.top--
+      return this.dataStore[this.top]
+    }
   }
 
   peek() {
@@ -21,7 +22,7 @@ export default class Stack {
       return null
     } else {
       return this.dataStore[this.top - 1]
-      }
+    }
   }
 
   isEmpty() {
@@ -29,7 +30,7 @@ export default class Stack {
       return true
     } else {
       return false
-      }
+    }
   }
 
   myLength() {

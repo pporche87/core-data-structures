@@ -1,8 +1,8 @@
 export default class Set {
     constructor() {
         this.set = []
-
     }
+
     size() {
       return this.set.length
     }
@@ -25,31 +25,35 @@ export default class Set {
 
     remove(data) {
         const match = this.set.find( (element) => element === data)
-        if(match) {
-            this.set.remove(data)
+        if(match) {this.set.remove(data)
         }
     }
 
-    // union(otherSet) {
+    union(otherSet) {
+        let newSet = this.set
+        otherSet.forEach( (element)  => {
+            const match = this.set.find( (data) => element === data)
+            if(!match) this.set.push(element)
+        })
+        return newSet
+    }
+
+    // intersect(otherSet) {
+    //     let newSet = []
+    //     otherSet.includes( (element) => {
+    //         const match = this.set.find( data => element === data)
+    //         if(match) newSet.push(element)
+    //     })
     //
+    //     return newSet
     // }
 
-//takes a callback function and passes it each element in sequence
-    // forEach(element) => {
-    //
-    //     console.log('hello world');
-    // }
+    clone() {
+        let newSet = []
+            this.set.forEach( (data) => {
+                newSet.push(data)
+            })
+            return newSet
+    }
 
-    // clone(data) {
-    //
-    //     }
-    // }
 }
-
-
-
-
-
-// const set = new Set()
-// set.add(9)
-// console.log(set.forEach(9));
