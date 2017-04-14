@@ -11,7 +11,6 @@ describe('Stack', () => {
     expect(Stack).to.be.a('function')
   })
 
-
   context('myPush()', () => {
     it('pushes an element to the top of the stack.', () => {
       const pushStack = new Stack()

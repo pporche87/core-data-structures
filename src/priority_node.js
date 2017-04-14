@@ -1,17 +1,18 @@
-export default class Node {
-  constructor(data){
-    this.data = data
-    this.next = undefined
-  }
+export default class PriorityNode {
+      constructor(data, priority){
+        this.data = data
+        this.next = undefined
+        this.priority = priority
 
-  getData() {
-       // returns the data ("apple") of the node
+      }
+  getData(data, priority) {
+       // returns the data ("priorityNode") of the node
     return this.data
   }
 
-  setNext(nodeB){
+  setNext(saladNode){
       // changes the reference to the next node and returns the original node
-     this.next = nodeB
+     this.next = saladNode
      return this
   }
 

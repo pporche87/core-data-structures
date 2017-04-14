@@ -13,14 +13,17 @@ class LinkedList {
   }
 
     getHeadNode() {
+        // Returns the first node in the list
         return this.head
     }
 
     getTailNode() {
+        // Returns the last node in the list
         return this.tail
     }
 
     myContains(fruit) {
+        // Determines whether or not the list contains the provided data
         let currentNode = this.head
 
         while(currentNode.next !== null){
@@ -37,6 +40,7 @@ class LinkedList {
         }
 
     find(fruit) {
+        // Returns the first node containing the provided data, or -1 if not found
         let currentNode = this.head
 
         while(currentNode.next !== null){
@@ -55,6 +59,7 @@ class LinkedList {
     }
 
     insert(newElement) {
+        // Inserts a node (with the provided data) to the tail of the list
         this._length++
 
         let newNode = new Node(newElement), currentNode = this.head
@@ -70,12 +75,14 @@ class LinkedList {
     }
 
     insertFirst(fruit) {
+        // Inserts a node (with the provided data) to the head of the list
     let newNode = new Node(fruit)
         newNode.next = this.head
         this.head = newNode
     }
 
     insertBefore(newFruit, fruit) {
+        // Inserts a node (with data "apples") before the first node containing "bananas"
     let insertNode = new Node(newFruit)
     let currentNode = this.head
 
@@ -98,6 +105,7 @@ class LinkedList {
     }
 
     insertAfter(fruit, newFruit) {
+        // Inserts a node (with data "bananas") after the first node containing "apples"
         let insertNode = new Node(newFruit)
         let currentNode = this.head
 
@@ -120,6 +128,7 @@ class LinkedList {
     }
 
     remove() {
+        // Removes the tail node from the list
         let currentNode = this.head
 
         while(currentNode.next){
@@ -134,6 +143,7 @@ class LinkedList {
         }
 
     removeFirst() {
+         // Removes the head node from the list
         this._length--
         let currentNode = this.head
         this.head = currentNode.next
@@ -141,6 +151,7 @@ class LinkedList {
     }
 
     isEmpty() {
+        // Determines if the list is empty or not
         if(this._length === 0){
           return true
         } else {
@@ -149,10 +160,12 @@ class LinkedList {
     }
 
     mySize() {
+        //Returns the size of the list (number of nodes)
         return this._length
     }
 
     clear() {
+        // Clears the list of all nodes/data
       this._length = 0
       this.head = null
       this.tail = null

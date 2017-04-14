@@ -1,41 +1,47 @@
- export default class Queues {
+export default class Queues {
   constructor() {
     this.dataStore = []
-    this.counter = 0
+    this._oldestIndex = 1
+    this._newestIndex = 1
   }
 
   enqueue(element){
-    this.dataStore.push(element)
-    this.counter++
+    this.dataStore[this._newestIndex] = element
+    this._newestIndex++
+    return this._newestIndex
   }
 
   dequeue(){
-    if(this.counter === 0){
+    if(this._oldestIndex === this._newestIndex){
       return null
     } else {
-      return this.dataStore.shift()
-      this.counter--
+      let deletedData = this.dataStore[this._oldestIndex]
+
+      delete this.dataStore[this._oldestIndex]
+      this._oldestIndex++
+
+      return deletedData
     }
   }
 
   front(){
-    if(this.counter === 0){
+    if(this._oldestIndex === this._newestIndex){
       return null
     } else {
-      return this.dataStore[0]
+      return this.dataStore[this._oldestIndex]
     }
   }
 
-  back(){
-    if(this.counter === 0){
+  myBack(){
+    if(this._oldestIndex === this._newestIndex){
       return null
     } else {
-      return this.dataStore[this.dataStore.length - 1]
+      return this.dataStore[this._newestIndex - 1]
     }
   }
 
   isEmpty(){
-    if(this.counter === 0){
+    if(this._oldestIndex === this._newestIndex){
       return true
     } else {
       return false
@@ -43,7 +49,6 @@
   }
 
   myLength(){
-    return this.counter
+    return this._newestIndex - this._oldestIndex
   }
-
 }

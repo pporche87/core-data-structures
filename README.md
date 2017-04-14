@@ -22,10 +22,63 @@ Use `npm install` in order to install all dependencies.
 
 ## Usage and Examples
 
+This is the dequeue function in our priorityQueues.js file, it removes and element from the front of a queue.
 
+```
+dequeue() {
+  if(this.dataStore.length === 0) {
+    return null
+  } else {
+    this.counter--
 
+    let deletedData = this.front()
+    let deletedIndex = this.dataStore.indexOf(deletedData)
+    this.dataStore.splice(deletedIndex, 1)
 
-# Core Data Structures
+    return deletedData
+  }
+}
+```
+This is the dequeue test function in our priorityQueuesTest.js file, it checks to see if the data returned matches the data that was removed from the front of a queue.  
+```
+context('dequeue()', () => {
+  it('returns and removes the front element in the queue or null if the queue is empty.', () => {
+    const myQueue = new PriorityQueues()
+    expect(myQueue.dequeue() ).to.equal(null)
+
+    myQueue.enqueue('grindr', 50)
+    myQueue.enqueue('daddyhunt', 200)
+    myQueue.enqueue('manhunt', 200)
+    myQueue.enqueue('her', 100)
+    myQueue.enqueue('bumble', 150)
+
+    expect(myQueue.dequeue().data ).to.equal('daddyhunt')
+    expect(myQueue.dequeue().priority ).to.equal(200)
+  })
+})
+```
+This is the Set function in our set.js file, it unites two sets into one new set.
+```
+union(otherSet) {
+    let newSet = this.set
+    otherSet.forEach( (element)  => {
+        const match = this.set.find( (data) => element === data)
+        if(!match) this.set.push(element)
+    })
+    return newSet
+}
+```
+This is the Set test function in our set_test.js file, it checks sets and unions the set with another set and returns the resulting set.  
+
+```
+context('union', () => {
+    it('unions the set with another set and returns the resulting set', () => {
+        set.add('A')
+        expect(set.union(['1', '2', '3', '1'])).to.eql(['A', '1', '2', '3'])
+    })
+})
+```
+# Core Data Structures  ## 80% Complete (Basic)
 
 [Basic](#basic-data-structures) | [Advanced](#advanced-data-structures)
 
@@ -144,7 +197,7 @@ pizzaNode.getNext()           // returns the next node or null if none
 ```
 
 ### Doubly-Linked List ( using Double Nodes )
-
+[X] Doubly-Linked List
 The interface for the Doubly-Linked List is the same as the Linked List above, _except_ that it uses a double-link node (see below).
 
 From [Wikipedia](https://en.wikipedia.org/wiki/Doubly_linked_list) [edited]:
@@ -153,7 +206,7 @@ From [Wikipedia](https://en.wikipedia.org/wiki/Doubly_linked_list) [edited]:
 
 #### Double Node
 
-[X] To implement a _standard_ doubly-linked list, use a **double node** data structure in your implementation.
+ To implement a _standard_ doubly-linked list, use a **double node** data structure in your implementation.
 
 This is the same as the [Node](#node) data structure, except that it also has the methods `.getPrevious()` and `.setPrevious(<DoubleNode>)`. These methods get and set the previous `DoubleNode` in the list.
 
