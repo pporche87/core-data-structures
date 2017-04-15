@@ -1,18 +1,18 @@
-'use strict'
-
 export default class Node {
   constructor(data){
     this.data = data
-    this.next = undefined 
+    this.next = undefined
   }
 
   getData() {
     return this.data
   }
+
   setNext(nodeB){
      this.next = nodeB
      return this
   }
+
   getNext(nextNode){
       if (nextNode === undefined) {
         return null
@@ -20,4 +20,5 @@ export default class Node {
         return this.next
       }
   }
+  
 }

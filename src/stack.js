@@ -1,5 +1,3 @@
-'use strict'
-
 export default class Stack {
   constructor() {
     this.dataStore = []
@@ -15,7 +13,7 @@ export default class Stack {
       return null
     } else {
       return this.dataStore[this.top--]
-    }
+      }
   }
 
   peek() {
@@ -23,7 +21,7 @@ export default class Stack {
       return null
     } else {
       return this.dataStore[this.top - 1]
-    }
+      }
   }
 
   isEmpty() {
@@ -31,7 +29,7 @@ export default class Stack {
       return true
     } else {
       return false
-    }
+      }
   }
 
   myLength() {

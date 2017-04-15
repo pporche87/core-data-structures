@@ -5,51 +5,49 @@ import Stack from '../src/stack'
 chai.use(chaiChange)
 
 describe('Stack', () => {
-  'use strict'
 
-  it('exists', () => {
-    expect(Stack).to.be.a('function')
-  })
+      it('exists', () => {
+        expect(Stack).to.be.a('function')
+      })
 
+      context('myPush()', () => {
+        it('pushes an element to the top of the stack.', () => {
+          const myStack = new Stack()
 
-  context('myPush()', () => {
-    it('pushes an element to the top of the stack.', () => {
-      const myStack = new Stack()
+          expect( () => myStack.myPush('foo')).to.alter(() => myStack.top, { from: 0, to: 1 })
+        })
+      })
 
-      expect( () => myStack.myPush('foo')).to.alter(() => myStack.top, { from: 0, to: 1 })
-    })
-  })
+      context('myPop()', () => {
+        it('returns the top element in the stack or null if the stack is empty.', () => {
+          const myStack = new Stack()
 
-  context('myPop()', () => {
-    it('returns the top element in the stack or null if the stack is empty.', () => {
-      const myStack = new Stack()
+          expect(myStack.myPop() ).to.equal(null)
+        })
+      })
 
-      expect(myStack.myPop() ).to.equal(null)
-    })
-  })
+      context('peek()', () => {
+        it('returns the top element in the stack or null if the stack is empty.', () => {
+          const myStack = new Stack()
 
-  context('peek()', () => {
-    it('returns the top element in the stack or null if the stack is empty.', () => {
-      const myStack = new Stack()
+          expect(myStack.peek() ).to.equal(null)
+        })
+      })
 
-      expect(myStack.peek() ).to.equal(null)
-    })
-  })
+      context('isEmpty()', () => {
+        it('returns true if the stack is empty or false if not.', () => {
+          const myStack = new Stack()
 
-  context('isEmpty()', () => {
-    it('returns true if the stack is empty or false if not.', () => {
-      const myStack = new Stack()
+          expect(myStack.isEmpty() ).to.equal(true || false)
+        })
+      })
 
-      expect(myStack.isEmpty() ).to.equal(true || false)
-    })
-  })
+      context('length()', () => {
+        it('returns the number of elements in the stack.', () => {
+          const myStack = new Stack()
 
-  context('length()', () => {
-    it('returns the number of elements in the stack.', () => {
-      const myStack = new Stack()
-
-      expect(myStack.myLength() ).to.equal(0)
-    })
-  })
-
+          expect(myStack.myLength() ).to.equal(0)
+        })
+      })
+      
 })

@@ -1,11 +1,18 @@
- export default class Queues {
+class PriorityNode {
+  constructor(data, priority) {
+    this.data = data
+    this.priority = priority
+  }
+}
+
+class PriorityQueues {
   constructor() {
     this.dataStore = []
     this.counter = 0
   }
 
-  enqueue(element){
-    this.dataStore.push(element)
+  enqueue(data, priority){
+    this.dataStore.push(data, priority)
     this.counter++
   }
 
@@ -15,7 +22,7 @@
     } else {
       return this.dataStore.shift()
       this.counter--
-    }
+      }
   }
 
   front(){
@@ -23,7 +30,7 @@
       return null
     } else {
       return this.dataStore[0]
-    }
+      }
   }
 
   back(){
@@ -31,7 +38,7 @@
       return null
     } else {
       return this.dataStore[this.dataStore.length - 1]
-    }
+      }
   }
 
   isEmpty(){
@@ -39,7 +46,7 @@
       return true
     } else {
       return false
-    }
+      }
   }
 
   myLength(){
@@ -47,3 +54,5 @@
   }
 
 }
+
+export { PriorityNode, PriorityQueues }
