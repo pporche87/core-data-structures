@@ -4,7 +4,7 @@ import { Node, LinkedList } from '../src/linkedListPatrick'
 
 chai.use(chaiChange)
 
-describe.only('LinkedList', () => {
+describe('LinkedList', () => {
 
   let myLinkedList = new LinkedList()
   myLinkedList.insert('apple')
@@ -112,5 +112,5 @@ describe.only('LinkedList', () => {
       expect(myLinkedList.clear() ).to.equal(0)
     })
   })
-  
+
 })
