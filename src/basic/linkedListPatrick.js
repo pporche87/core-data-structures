@@ -1,6 +1,7 @@
 class Node {
-    constructor(element) {
-        this.element = element
+    constructor(key, value) {
+        this.key = key
+        this.value = value
         this.next = null
   }
 }
@@ -56,6 +57,13 @@ class LinkedList {
             return currentNode.data
           }
             return -1
+    }
+
+    findAndReturnValue(key) {
+      const node = this.find(key)
+      return node
+        ? node.value
+        : null
     }
 
     insert(newElement) {
