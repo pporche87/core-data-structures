@@ -44,6 +44,10 @@ class LinkedList {
 		// Returns the first node containing the provided data, or -1 if not found
 		let currentNode = this.head
 
+		if (!currentNode) {
+			return false
+		}
+
 		do {
 			if(currentNode.key === nodeElement){
 				return currentNode
@@ -57,9 +61,46 @@ class LinkedList {
 		} return -1
 	}
 
+	clear() {
+		this._length = 0
+		this.head = null
+	}
+
+	findByNext(key) {
+		let currentNode = this.head
+
+		if (!currentNode) {
+			return null
+		} else if (!currentNode.next && currentNode.key === key) {
+			return this.clear()
+		} else {
+			while (currentNode.next) {
+				if (currentNode.next.key === key) {
+					return currentNode
+				} else {
+					currentNode = currentNode.next
+				}
+			} return null
+		}
+	}
+
 	findAndReturnValue(key) {
 		let node = this.myFind(key)
 		return node.value
+	}
+
+	myHas(key) {
+		return !!this.myFind(key)
+	}
+
+	removeBy(key) {
+		const previousNode = this.findByNext(key)
+		if (previousNode) {
+			const node = previousNode.next
+			previousNode.next = node.next
+			return node
+		}
+		return null
 	}
 
 	insert(key, value) {

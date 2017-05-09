@@ -20,7 +20,6 @@ export default class HashTable {
 	put(key, value) {
 		const hashNumber = this.hash(key)
 		const node = new Node(hashNumber, value)
-		console.log(node);
 		if (!this.storage.hasOwnProperty(hashNumber)) {
 			const linkedList = new LinkedList()
 			linkedList.insert(hashNumber, value)
@@ -42,10 +41,10 @@ export default class HashTable {
 		}
 	}
 
-	contains(key) {
+	myContains(key) {
 		const linkedList = this.storage[this.hash(key)]
 		if(linkedList) {
-			return linkedList.has(key)
+			return linkedList.myHas(key)
 		} else {
 			return false
 		}
@@ -57,19 +56,21 @@ export default class HashTable {
 		})
 	}
 
-	remove(key) {
+	myRemove(key) {
 		const hashNumber = this.hash(key)
-		if (this.storage.hasOwnProperty(hashNumber) && this.storage[hashNumber].hasOwnProperty(key)) {
-			let linkedList = new linkedList()
-			linkedList = this.storage[this.hash(key)]
-			return this.count--
-		} else {
+		// const checkBool = hashNumber in this.storage
+		// console.log(checkBool);
+		if(!(hashNumber in this.storage)) {
 			return false
+		} else {
+			const linkedList = this.storage[hashNumber]
+			linkedList.removeBy(hashNumber)
+			this.count--
+			return this.count
 		}
 	}
 
 	size() {
 		return this.count
 	}
-
 }
