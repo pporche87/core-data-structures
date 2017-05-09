@@ -1,65 +1,75 @@
-import { Node, LinkedList } from '../src/basic/linkedListPatrick'
+import { Node, LinkedList } from './linkedListHashTable'
 
 export default class HashTable {
-    constructor() {
-      this._storage = {}
-      this._count = 0
-    }
+	constructor() {
+		this.storage = {}
+		this.count = 0
+	}
 
-    put(key, value) {
-      const node = new Node(key, value)
-      const hashNumber = hash(key)
+	hash(key) {
+		if (typeof key === 'string') {
+			let hash = 0
+			for (let i = 0; i < key.length; i++) {
+				hash += key.charCodeAt(i)
+			}
+			return hash
+		}
+		return null
+	}
 
-      if (!this._storage.hasOwnProperty(hashNumber)) {
-        const linkedList = new LinkedList()
-        linkedList.insert(key, value)
-        this._storage[hashNumber] = linkedList
-      } else {
-        linkedList.insert(node)
-      }
-      return this._count++
-    }
+	put(key, value) {
+		const hashNumber = this.hash(key)
+		const node = new Node(hashNumber, value)
+		console.log(node);
+		if (!this.storage.hasOwnProperty(hashNumber)) {
+			const linkedList = new LinkedList()
+			linkedList.insert(hashNumber, value)
+			this.storage[hashNumber] = linkedList
+		} else {
+			this.storage[hashNumber].insert(node)
+		}
+		this.count++
+		return this.count
+	}
 
-    get(key) {
-      const hashNumber = hash(key)
-      if (this._storage.hasOwnProperty(hashNumber) && this.storage[hashNumber].hasOwnProperty(key)) {
-        const linkedListValue = this._storage[hashNumber]
-        return linkedListValue.findAndReturnValue(key)
-      } else {
-        return null
-      }
-    }
+	myGet(key) {
+		const hashNumber = this.hash(key)
+		if(!(hashNumber in this.storage)) {
+			return -1
+		} else {
+			const linkedListValue = this.storage[hashNumber]
+			return linkedListValue.findAndReturnValue(hashNumber)
+		}
+	}
 
-    contains(key) {
-      const linkedList = this._storage[this.hash(key)]
-      let hashNumber = hash(key)
-      if(linkedList) {
-        return linkedList.has(key)
-      } else {
-        return false
-      }
-    }
+	contains(key) {
+		const linkedList = this.storage[this.hash(key)]
+		if(linkedList) {
+			return linkedList.has(key)
+		} else {
+			return false
+		}
+	}
 
-    iterate(callback) {
-      Object.keys(this._storage).forEach( key => {
-        callback(key, this._storage[key])
-      })
-    }
+	iterate(callback) {
+		Object.keys(this.storage).forEach( key => {
+			callback(key, this.storage[key])
+		})
+	}
 
-    remove(key) {
-      if (this._storage.hasOwnProperty(hashNumber) && this._storage[hash].hasOwnProperty(key)) {
-        const linkedList = this._storage[this.hash(key)]
-        return this._count--
-      } else {
-        return false
-      }
-    }
+	remove(key) {
+		const hashNumber = this.hash(key)
+		if (this.storage.hasOwnProperty(hashNumber) && this.storage[hashNumber].hasOwnProperty(key)) {
+			let linkedList = new linkedList()
+			linkedList = this.storage[this.hash(key)]
+			return this.count--
+		} else {
+			return false
+		}
+	}
 
-    size() {
-      return this._count
-    }
+	size() {
+		return this.count
+	}
 
-    hash(key) {
-      return key.toString().length % this._size
-    }
 }

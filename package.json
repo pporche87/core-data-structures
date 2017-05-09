@@ -1,15 +1,20 @@
 {
   "name": "core-data-structures",
-  "description": "Tests and implementations for common data structures.",
   "description": "jobless-sambar",
   "private": false,
   "version": "0.0.0",
+	"dependencies": {
+		"chai": "~1.8.0",
+		"chai-change": "^2.1.2"
+	},
   "devDependencies": {
     "babel-cli": "^6.18.0",
     "babel-preset-env": "^1.3.3",
     "babel-register": "^6.18.0",
-    "chai": "~1.8.0",
-    "chai-change": "^2.1.2",
+    "eslint": "^3.19.0",
+    "eslint-config-airbnb-base": "^11.1.3",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-react": "^7.0.0",
     "mocha": "2.0.1"
   },
   "scripts": {
