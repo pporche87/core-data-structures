@@ -10,4 +10,14 @@ describe('BinarySearchTree', () => {
 		expect(BinarySearchTree).to.be.a('function')
 	})
 
+	context('insert(value)', () => {
+		it('returns the nodes data', () => {
+			const bst = new BinarySearchTree()
+			bst.insert(3)
+			console.log(bst);
+
+			expect(leastNode.getData() ).to.deep.equal({data: 3})
+		})
+	})
+
 })
